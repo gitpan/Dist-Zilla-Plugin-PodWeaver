@@ -1,0 +1,14 @@
+--- 
+abstract: do horrible things to POD, producing better docs
+author: 
+  - Ricardo SIGNES <rjbs@cpan.org>
+generated_by: Dist::Zilla::Plugin::MetaYaml version 1.004
+license: perl
+name: Dist-Zilla-Plugin-PodWeaver
+requires: 
+  Dist::Zilla: 1.004
+  List::MoreUtils: 0
+  Moose: 0
+  Moose::Autobox: 0
+  Pod::Weaver: 1
+version: 2.000
