@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.092970';
+our $VERSION = '3.092971';
 
 
 # ABSTRACT: do horrible things to POD, producing better docs
@@ -51,8 +51,16 @@ sub munge_pod {
   my $pod_document = Pod::Elemental->read_string($pod_str);
   Pod::Elemental::Transformer::Pod5->new->transform_node($pod_document);
 
+  # XXX: This is really stupid. -- rjbs, 2009-10-24
+  $pod_document->children->keys->reverse->each_value(sub {
+    my ($i, $para) = ($_, $pod_document->children->[$_]);
+    splice @{ $pod_document->children }, $i, 1
+      if  $para->isa('Pod::Elemental::Element::Pod5::Nonpod')
+      and $para->content !~ /\S/;
+  });
+
   my $nester = Pod::Elemental::Transformer::Nester->new({
-    top_selector => s_command([ qw(head1 method attr) ]),
+    top_selector => s_command([ qw(head1) ]),
     content_selectors => [
       s_flat,
       s_command( [ qw(head2 head3 head4 over item back) ]),
@@ -106,7 +114,12 @@ Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better doc
 
 =head1 VERSION
 
-version 3.092970
+version 3.092971
+
+=head1 DESCRIPTION
+
+PodWeaver is a work in progress, which rips apart your kinda-POD and
+reconstructs it as boring old real POD.
 
 =head1 WARNING
 
@@ -117,14 +130,9 @@ Eventually, this code will be really awesome.  I hope.  It will probably
 provide an interface to something more cool and sophisticated.  Until then,
 don't expect it to do anything but bring sorrow to you and your people.
 
-=head1 DESCRIPTION
-
-PodWeaver is a work in progress, which rips apart your kinda-POD and
-reconstructs it as boring old real POD.
-
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+  Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
