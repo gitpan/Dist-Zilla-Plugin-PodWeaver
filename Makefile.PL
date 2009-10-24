@@ -7,16 +7,18 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
   DISTNAME  => 'Dist-Zilla-Plugin-PodWeaver',
   NAME      => 'Dist::Zilla::Plugin::PodWeaver',
-  AUTHOR    => 'Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>',
-  ABSTRACT  => 'do horrible things to POD, producing better docs',
-  VERSION   => '2.000',
+  AUTHOR    => "Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>",
+  ABSTRACT  => "do\ horrible\ things\ to\ POD\,\ producing\ better\ docs",
+  VERSION   => '3.092970',
   EXE_FILES => [ qw() ],
-  (eval { ExtUtils::MakeMaker->VERSION(6.21) } ? (LICENSE => 'perl') : ()),
+  (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {
     "Dist::Zilla" => '1.004',
-    "Pod::Weaver" => '1',
-    "Moose::Autobox" => '0',
+    "Pod::Weaver" => '3',
     "List::MoreUtils" => '0',
+    "Moose::Autobox" => '0',
     "Moose" => '0',
   },
+  test => {TESTS => 't/*.t'}
 );
+

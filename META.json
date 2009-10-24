@@ -1,0 +1,24 @@
+{
+   "resources" : {
+      "repository" : "http://github.com/rjbs/dist-zilla-plugin-podweaver/tree"
+   },
+   "meta-spec" : {
+      "version" : 1.4,
+      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
+   },
+   "generated_by" : "Dist::Zilla version 1.092850",
+   "version" : "3.092970",
+   "name" : "Dist-Zilla-Plugin-PodWeaver",
+   "author" : [
+      "Ricardo SIGNES <rjbs@cpan.org>"
+   ],
+   "license" : "perl",
+   "requires" : {
+      "Dist::Zilla" : "1.004",
+      "Pod::Weaver" : "3",
+      "List::MoreUtils" : "0",
+      "Moose::Autobox" : "0",
+      "Moose" : "0"
+   },
+   "abstract" : "do horrible things to POD, producing better docs"
+}
