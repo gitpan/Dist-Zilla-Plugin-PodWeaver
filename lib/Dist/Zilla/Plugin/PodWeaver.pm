@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.092971';
+our $VERSION = '3.092990';
 
 
 # ABSTRACT: do horrible things to POD, producing better docs
@@ -17,6 +17,16 @@ use Pod::Elemental::Transformer::Pod5;
 use Pod::Elemental::Transformer::Nester;
 use Pod::Elemental::Selectors -all;
 
+
+sub _weaver {
+  my ($self) = @_;
+
+  if (glob('weaver.*')) {
+    return Pod::Weaver->new_from_config;
+  } else {
+    return Pod::Weaver->new_with_default_config;
+  }
+}
 
 sub munge_file {
   my ($self, $file) = @_;
@@ -69,7 +79,7 @@ sub munge_pod {
 
   $nester->transform_node($pod_document);
 
-  my $weaver  = Pod::Weaver->new_with_default_config;
+  my $weaver  = $self->_weaver;
   my $new_doc = $weaver->weave_document({
     pod_document => $pod_document,
     ppi_document => $ppi_document,
@@ -114,7 +124,7 @@ Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better doc
 
 =head1 VERSION
 
-version 3.092971
+version 3.092990
 
 =head1 DESCRIPTION
 
@@ -129,6 +139,12 @@ break whatever it is you were trying to do.
 Eventually, this code will be really awesome.  I hope.  It will probably
 provide an interface to something more cool and sophisticated.  Until then,
 don't expect it to do anything but bring sorrow to you and your people.
+
+=head1 CONFIGURATION
+
+If a file matching C<./weaver.*> exists, Pod::Weaver will be told to look for
+configuration in the current directory.  Otherwise, it will use the default
+configuration.
 
 =head1 AUTHOR
 
