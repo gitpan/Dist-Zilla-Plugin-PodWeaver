@@ -1,12 +1,12 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.092990';
+our $VERSION = '3.093000';
 
 
 # ABSTRACT: do horrible things to POD, producing better docs
 use Moose;
 use Moose::Autobox;
 use List::MoreUtils qw(any);
-use Pod::Weaver 3;
+use Pod::Weaver 3.093000; # @CorePrep as part of default config
 with 'Dist::Zilla::Role::FileMunger';
 
 use namespace::autoclean;
@@ -59,25 +59,6 @@ sub munge_pod {
   # -- rjbs, 2009-10-24
   my $pod_str = join "\n", @pod_tokens;
   my $pod_document = Pod::Elemental->read_string($pod_str);
-  Pod::Elemental::Transformer::Pod5->new->transform_node($pod_document);
-
-  # XXX: This is really stupid. -- rjbs, 2009-10-24
-  $pod_document->children->keys->reverse->each_value(sub {
-    my ($i, $para) = ($_, $pod_document->children->[$_]);
-    splice @{ $pod_document->children }, $i, 1
-      if  $para->isa('Pod::Elemental::Element::Pod5::Nonpod')
-      and $para->content !~ /\S/;
-  });
-
-  my $nester = Pod::Elemental::Transformer::Nester->new({
-    top_selector => s_command([ qw(head1) ]),
-    content_selectors => [
-      s_flat,
-      s_command( [ qw(head2 head3 head4 over item back) ]),
-    ],
-  });
-
-  $nester->transform_node($pod_document);
 
   my $weaver  = $self->_weaver;
   my $new_doc = $weaver->weave_document({
@@ -124,7 +105,7 @@ Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better doc
 
 =head1 VERSION
 
-version 3.092990
+version 3.093000
 
 =head1 DESCRIPTION
 
