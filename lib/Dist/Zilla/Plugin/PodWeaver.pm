@@ -1,12 +1,12 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.093000';
+our $VERSION = '3.093001';
 
 
 # ABSTRACT: do horrible things to POD, producing better docs
 use Moose;
 use Moose::Autobox;
 use List::MoreUtils qw(any);
-use Pod::Weaver 3.093000; # @CorePrep as part of default config
+use Pod::Weaver 3.093001; # @Default
 with 'Dist::Zilla::Role::FileMunger';
 
 use namespace::autoclean;
@@ -16,17 +16,33 @@ use Pod::Elemental;
 use Pod::Elemental::Transformer::Pod5;
 use Pod::Elemental::Transformer::Nester;
 use Pod::Elemental::Selectors -all;
+use Pod::Weaver::Config::Assembler;
 
 
 sub _weaver {
   my ($self) = @_;
 
-  if (glob('weaver.*')) {
+  if ($self->config_plugin) {
+    my $assembler = Pod::Weaver::Config::Assembler->new;
+
+    my $root = $assembler->section_class->new({ name => '_' });
+    $assembler->sequence->add_section($root);
+
+    $assembler->change_section( $self->config_plugin );
+    $assembler->end_section;
+
+    return Pod::Weaver->new_from_config_sequence($assembler->sequence);
+  } elsif (glob('weaver.*')) {
     return Pod::Weaver->new_from_config;
   } else {
     return Pod::Weaver->new_with_default_config;
   }
 }
+
+has config_plugin => (
+  is  => 'ro',
+  isa => 'Str',
+);
 
 sub munge_file {
   my ($self, $file) = @_;
@@ -105,7 +121,7 @@ Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better doc
 
 =head1 VERSION
 
-version 3.093000
+version 3.093001
 
 =head1 DESCRIPTION
 
@@ -123,9 +139,13 @@ don't expect it to do anything but bring sorrow to you and your people.
 
 =head1 CONFIGURATION
 
-If a file matching C<./weaver.*> exists, Pod::Weaver will be told to look for
-configuration in the current directory.  Otherwise, it will use the default
-configuration.
+If the C<config_plugin> attribute is given, it will be treated like a
+Pod::Weaver section heading.  For example, C<@Default> could be given.
+
+Otherwise, if a file matching C<./weaver.*> exists, Pod::Weaver will be told to
+look for configuration in the current directory.
+
+Otherwise, it will use the default configuration.
 
 =head1 AUTHOR
 
