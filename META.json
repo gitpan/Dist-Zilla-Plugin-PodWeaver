@@ -6,8 +6,8 @@
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "generated_by" : "Dist::Zilla version 1.092990",
-   "version" : "3.093020",
+   "generated_by" : "Dist::Zilla version 1.093160",
+   "version" : "3.093170",
    "name" : "Dist-Zilla-Plugin-PodWeaver",
    "author" : [
       "Ricardo SIGNES <rjbs@cpan.org>"
@@ -23,3 +23,4 @@
    },
    "abstract" : "do horrible things to POD, producing better docs"
 }
+

@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.093020';
+our $VERSION = '3.093170';
 
 
 # ABSTRACT: do horrible things to POD, producing better docs
@@ -22,6 +22,8 @@ use Pod::Weaver::Config::Assembler;
 sub _weaver {
   my ($self) = @_;
 
+  my @files = glob('weaver.*');
+
   if ($self->config_plugin) {
     my $assembler = Pod::Weaver::Config::Assembler->new;
 
@@ -32,7 +34,7 @@ sub _weaver {
     $assembler->end_section;
 
     return Pod::Weaver->new_from_config_sequence($assembler->sequence);
-  } elsif (glob('weaver.*')) {
+  } elsif (@files) {
     return Pod::Weaver->new_from_config;
   } else {
     return Pod::Weaver->new_with_default_config;
@@ -105,7 +107,7 @@ Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better doc
 
 =head1 VERSION
 
-version 3.093020
+version 3.093170
 
 =head1 DESCRIPTION
 
