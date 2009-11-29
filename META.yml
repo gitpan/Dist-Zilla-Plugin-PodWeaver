@@ -17,4 +17,4 @@ requires:
   Pod::Weaver: 3.093001
 resources:
   repository: http://github.com/rjbs/dist-zilla-plugin-podweaver
-version: 3.093320
+version: 3.093321

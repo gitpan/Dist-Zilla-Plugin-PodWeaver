@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.093320';
+our $VERSION = '3.093321';
 
 
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
@@ -19,7 +19,8 @@ use Pod::Elemental::Selectors -all;
 use Pod::Weaver::Config::Assembler;
 
 
-sub _weaver {
+
+sub weaver {
   my ($self) = @_;
 
   my @files = glob('weaver.*');
@@ -60,7 +61,7 @@ sub munge_file {
 sub munge_perl_string {
   my ($self, $doc, $arg) = @_;
 
-  my $weaver  = $self->_weaver;
+  my $weaver  = $self->weaver;
   my $new_doc = $weaver->weave_document({
     %$arg,
     pod_document => $doc->{pod},
@@ -108,12 +109,23 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.093320
+version 3.093321
 
 =head1 DESCRIPTION
 
 PodWeaver is a work in progress, which rips apart your kinda-POD and
 reconstructs it as boring old real POD.
+
+=head1 METHODS
+
+=head2 weaver
+
+This method returns the Pod::Weaver object to be used.  The current
+implementation builds a new weaver on each invocation, because one or two core
+Pod::Weaver plugins cannot be trusted to handle multiple documents per plugin
+instance.  In the future, when that is fixed, this may become an accessor of an
+attribute with a builder.  Until this is clearer, use caution when modifying
+this method in subclasses.
 
 =head1 WARNING
 

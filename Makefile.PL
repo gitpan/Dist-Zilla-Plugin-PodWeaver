@@ -11,7 +11,7 @@ WriteMakefile(
   NAME      => 'Dist::Zilla::Plugin::PodWeaver',
   AUTHOR    => "Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>",
   ABSTRACT  => "weave\ your\ Pod\ together\ from\ configuration\ and\ Dist\:\:Zilla",
-  VERSION   => '3.093320',
+  VERSION   => '3.093321',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {

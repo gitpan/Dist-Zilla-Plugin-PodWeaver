@@ -7,7 +7,7 @@
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
    "generated_by" : "Dist::Zilla version 1.093290",
-   "version" : "3.093320",
+   "version" : "3.093321",
    "name" : "Dist-Zilla-Plugin-PodWeaver",
    "author" : [
       "Ricardo SIGNES <rjbs@cpan.org>"
