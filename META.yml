@@ -1,0 +1,20 @@
+---
+abstract: 'weave your Pod together from configuration and Dist::Zilla'
+author:
+  - 'Ricardo SIGNES <rjbs@cpan.org>'
+generated_by: 'Dist::Zilla version 1.093290'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Dist-Zilla-Plugin-PodWeaver
+requires:
+  Dist::Zilla: 1.004
+  List::MoreUtils: 0
+  Moose: 0
+  Moose::Autobox: 0
+  Pod::Elemental::PerlMunger: 0
+  Pod::Weaver: 3.093001
+resources:
+  repository: http://github.com/rjbs/dist-zilla-plugin-podweaver
+version: 3.093320

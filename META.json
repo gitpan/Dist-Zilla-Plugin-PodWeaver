@@ -6,8 +6,8 @@
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "generated_by" : "Dist::Zilla version 1.093160",
-   "version" : "3.093170",
+   "generated_by" : "Dist::Zilla version 1.093290",
+   "version" : "3.093320",
    "name" : "Dist-Zilla-Plugin-PodWeaver",
    "author" : [
       "Ricardo SIGNES <rjbs@cpan.org>"
@@ -21,6 +21,6 @@
       "List::MoreUtils" : "0",
       "Moose" : "0"
    },
-   "abstract" : "do horrible things to POD, producing better docs"
+   "abstract" : "weave your Pod together from configuration and Dist::Zilla"
 }
 

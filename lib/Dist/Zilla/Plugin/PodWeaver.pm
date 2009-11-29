@@ -1,8 +1,8 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.093170';
+our $VERSION = '3.093320';
 
 
-# ABSTRACT: do horrible things to POD, producing better docs
+# ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
 use Moose::Autobox;
 use List::MoreUtils qw(any);
@@ -80,6 +80,7 @@ sub munge_pod {
   my $new_content = $self->munge_perl_string(
     $file->content,
     {
+      zilla    => $self->zilla,
       filename => $file->name,
       version  => $self->zilla->version,
       license  => $self->zilla->license,
@@ -103,11 +104,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better docs
+Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and Dist::Zilla
 
 =head1 VERSION
 
-version 3.093170
+version 3.093320
 
 =head1 DESCRIPTION
 

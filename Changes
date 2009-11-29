@@ -1,5 +1,8 @@
 Revision history for Dist-Zilla-Plugin-PodWeaver
 
+3.093320  2009-11-28 22:10:59 America/New_York
+          pass the zilla into the weaver
+
 3.093170  2009-11-13
           fix a bug that caused config files to sometimes be ignored
           (reported by Jerome Quelin)

@@ -1,9 +1,9 @@
 
 
 This archive contains the distribution Dist-Zilla-Plugin-PodWeaver, version
-3.093170:
+3.093320:
 
-  do horrible things to POD, producing better docs
+  weave your Pod together from configuration and Dist::Zilla
 
 This software is copyright (c) 2009 by Ricardo SIGNES.
 

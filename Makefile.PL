@@ -2,14 +2,16 @@
 use strict;
 use warnings;
 
+
+
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
   DISTNAME  => 'Dist-Zilla-Plugin-PodWeaver',
   NAME      => 'Dist::Zilla::Plugin::PodWeaver',
   AUTHOR    => "Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>",
-  ABSTRACT  => "do\ horrible\ things\ to\ POD\,\ producing\ better\ docs",
-  VERSION   => '3.093170',
+  ABSTRACT  => "weave\ your\ Pod\ together\ from\ configuration\ and\ Dist\:\:Zilla",
+  VERSION   => '3.093320',
   EXE_FILES => [ qw() ],
   (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
   PREREQ_PM    => {
