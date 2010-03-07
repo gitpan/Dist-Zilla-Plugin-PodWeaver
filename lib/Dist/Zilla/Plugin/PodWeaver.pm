@@ -1,12 +1,10 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.093321';
-
-
+our $VERSION = '3.100650';
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
 use Moose::Autobox;
 use List::MoreUtils qw(any);
-use Pod::Weaver 3.093001; # @Default
+use Pod::Weaver 3.100650; # logging and new_args
 with 'Dist::Zilla::Role::FileMunger';
 
 use namespace::autoclean;
@@ -19,11 +17,12 @@ use Pod::Elemental::Selectors -all;
 use Pod::Weaver::Config::Assembler;
 
 
-
 sub weaver {
   my ($self) = @_;
 
   my @files = glob('weaver.*');
+
+  my $arg = { logger => $self };
 
   if ($self->config_plugin) {
     my $assembler = Pod::Weaver::Config::Assembler->new;
@@ -34,11 +33,11 @@ sub weaver {
     $assembler->change_section( $self->config_plugin );
     $assembler->end_section;
 
-    return Pod::Weaver->new_from_config_sequence($assembler->sequence);
+    return Pod::Weaver->new_from_config_sequence($assembler->sequence, $arg);
   } elsif (@files) {
-    return Pod::Weaver->new_from_config;
+    return Pod::Weaver->new_from_config($arg);
   } else {
-    return Pod::Weaver->new_with_default_config;
+    return Pod::Weaver->new_with_default_config($arg);
   }
 }
 
@@ -49,6 +48,8 @@ has config_plugin => (
 
 sub munge_file {
   my ($self, $file) = @_;
+
+  $self->log_debug([ 'weaving pod in %s', $file->name ]);
 
   return
     unless $file->name =~ /\.(?:pm|pod)$/i
@@ -109,12 +110,12 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.093321
+version 3.100650
 
 =head1 DESCRIPTION
 
-PodWeaver is a work in progress, which rips apart your kinda-POD and
-reconstructs it as boring old real POD.
+[PodWeaver] is the bridge between L<Dist::Zilla> and L<Pod::Weaver>.  It rips
+apart your kinda-Pod and reconstructs it as boring old real Pod.
 
 =head1 METHODS
 
@@ -126,15 +127,6 @@ Pod::Weaver plugins cannot be trusted to handle multiple documents per plugin
 instance.  In the future, when that is fixed, this may become an accessor of an
 attribute with a builder.  Until this is clearer, use caution when modifying
 this method in subclasses.
-
-=head1 WARNING
-
-This code is really, really sketchy.  It's crude and brutal and will probably
-break whatever it is you were trying to do.
-
-Eventually, this code will be really awesome.  I hope.  It will probably
-provide an interface to something more cool and sophisticated.  Until then,
-don't expect it to do anything but bring sorrow to you and your people.
 
 =head1 CONFIGURATION
 
@@ -152,7 +144,7 @@ Otherwise, it will use the default configuration.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2009 by Ricardo SIGNES.
+This software is copyright (c) 2010 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

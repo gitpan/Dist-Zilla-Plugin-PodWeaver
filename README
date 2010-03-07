@@ -1,11 +1,11 @@
 
 
 This archive contains the distribution Dist-Zilla-Plugin-PodWeaver, version
-3.093321:
+3.100650:
 
   weave your Pod together from configuration and Dist::Zilla
 
-This software is copyright (c) 2009 by Ricardo SIGNES.
+This software is copyright (c) 2010 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

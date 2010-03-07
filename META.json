@@ -1,26 +1,39 @@
 {
    "resources" : {
-      "repository" : "http://github.com/rjbs/dist-zilla-plugin-podweaver"
+      "repository" : "git://git.codesimply.com/Dist-Zilla-Plugin-PodWeaver.git"
    },
    "meta-spec" : {
       "version" : 1.4,
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "generated_by" : "Dist::Zilla version 1.093290",
-   "version" : "3.093321",
+   "generated_by" : "Dist::Zilla version 1.100651",
+   "version" : "3.100650",
    "name" : "Dist-Zilla-Plugin-PodWeaver",
    "author" : [
       "Ricardo SIGNES <rjbs@cpan.org>"
    ],
    "license" : "perl",
+   "build_requires" : {},
    "requires" : {
-      "Dist::Zilla" : "1.004",
-      "Pod::Weaver" : "3.093001",
-      "Moose::Autobox" : "0",
+      "PPI" : "0",
+      "File::Find::Rule" : "0",
+      "Pod::Elemental" : "0",
+      "namespace::autoclean" : "0",
       "Pod::Elemental::PerlMunger" : "0",
+      "Moose::Autobox" : "0",
+      "Pod::Weaver::Config::Assembler" : "0",
+      "Test::More" : "0",
+      "Dist::Zilla::Role::FileMunger" : "0",
+      "Pod::Elemental::Transformer::Pod5" : "0",
+      "Pod::Elemental::Transformer::Nester" : "0",
+      "Pod::Weaver" : "3.100650",
+      "Pod::Elemental::Selectors" : "0",
       "List::MoreUtils" : "0",
       "Moose" : "0"
    },
-   "abstract" : "weave your Pod together from configuration and Dist::Zilla"
+   "abstract" : "weave your Pod together from configuration and Dist::Zilla",
+   "configure_requires" : {
+      "ExtUtils::MakeMaker" : "6.11"
+   }
 }
 

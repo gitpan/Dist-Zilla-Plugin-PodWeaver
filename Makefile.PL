@@ -4,24 +4,49 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.11;
 
-WriteMakefile(
-  DISTNAME  => 'Dist-Zilla-Plugin-PodWeaver',
-  NAME      => 'Dist::Zilla::Plugin::PodWeaver',
-  AUTHOR    => "Ricardo\ SIGNES\ \<rjbs\@cpan\.org\>",
-  ABSTRACT  => "weave\ your\ Pod\ together\ from\ configuration\ and\ Dist\:\:Zilla",
-  VERSION   => '3.093321',
-  EXE_FILES => [ qw() ],
-  (eval { ExtUtils::MakeMaker->VERSION(6.31) } ? (LICENSE => 'perl') : ()),
-  PREREQ_PM    => {
-    "Dist::Zilla" => '1.004',
-    "Pod::Weaver" => '3.093001',
-    "Moose::Autobox" => '0',
-    "Pod::Elemental::PerlMunger" => '0',
-    "List::MoreUtils" => '0',
-    "Moose" => '0',
-  },
-  test => {TESTS => 't/*.t'}
-);
+
+
+my %WriteMakefileArgs = (
+                       'test' => {
+                                   'TESTS' => 't/*.t'
+                                 },
+                       'NAME' => 'Dist::Zilla::Plugin::PodWeaver',
+                       'DISTNAME' => 'Dist-Zilla-Plugin-PodWeaver',
+                       'CONFIGURE_REQUIRES' => {
+                                                 'ExtUtils::MakeMaker' => '6.11'
+                                               },
+                       'AUTHOR' => 'Ricardo SIGNES <rjbs@cpan.org>',
+                       'BUILD_REQUIRES' => {},
+                       'ABSTRACT' => 'weave your Pod together from configuration and Dist::Zilla',
+                       'EXE_FILES' => [],
+                       'VERSION' => '3.100650',
+                       'PREREQ_PM' => {
+                                        'PPI' => '0',
+                                        'File::Find::Rule' => '0',
+                                        'Pod::Elemental' => '0',
+                                        'namespace::autoclean' => '0',
+                                        'Pod::Elemental::PerlMunger' => '0',
+                                        'Moose::Autobox' => '0',
+                                        'Pod::Weaver::Config::Assembler' => '0',
+                                        'Test::More' => '0',
+                                        'Dist::Zilla::Role::FileMunger' => '0',
+                                        'Pod::Elemental::Transformer::Pod5' => '0',
+                                        'Pod::Elemental::Transformer::Nester' => '0',
+                                        'Pod::Weaver' => '3.100650',
+                                        'Pod::Elemental::Selectors' => '0',
+                                        'List::MoreUtils' => '0',
+                                        'Moose' => '0'
+                                      },
+                       'LICENSE' => 'perl'
+                     );
+
+
+delete $WriteMakefileArgs{LICENSE}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.31) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
 
