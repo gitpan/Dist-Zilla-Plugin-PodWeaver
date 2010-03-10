@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.100650';
+our $VERSION = '3.100680';
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
 use Moose::Autobox;
@@ -22,7 +22,7 @@ sub weaver {
 
   my @files = glob('weaver.*');
 
-  my $arg = { logger => $self };
+  my $arg = { root_config => { logger => $self } };
 
   if ($self->config_plugin) {
     my $assembler = Pod::Weaver::Config::Assembler->new;
@@ -110,7 +110,7 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.100650
+version 3.100680
 
 =head1 DESCRIPTION
 

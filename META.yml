@@ -5,7 +5,7 @@ author:
 build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: 6.11
-generated_by: 'Dist::Zilla version 1.100651'
+generated_by: 'Dist::Zilla version 1.100680'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -29,4 +29,4 @@ requires:
   namespace::autoclean: 0
 resources:
   repository: git://git.codesimply.com/Dist-Zilla-Plugin-PodWeaver.git
-version: 3.100650
+version: 3.100680
