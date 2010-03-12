@@ -1,10 +1,11 @@
 package Dist::Zilla::Plugin::PodWeaver;
-our $VERSION = '3.100680';
+our $VERSION = '3.100710';
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
 use Moose::Autobox;
 use List::MoreUtils qw(any);
-use Pod::Weaver 3.100650; # logging and new_args
+use Pod::Weaver 3.100710; # logging with proxies
+use Dist::Zilla::Role::FileMunger 1.100710; # logging with proxies
 with 'Dist::Zilla::Role::FileMunger';
 
 use namespace::autoclean;
@@ -22,7 +23,7 @@ sub weaver {
 
   my @files = glob('weaver.*');
 
-  my $arg = { root_config => { logger => $self } };
+  my $arg = { root_config => { logger => $self->logger } };
 
   if ($self->config_plugin) {
     my $assembler = Pod::Weaver::Config::Assembler->new;
@@ -110,7 +111,7 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.100680
+version 3.100710
 
 =head1 DESCRIPTION
 

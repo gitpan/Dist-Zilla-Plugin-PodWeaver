@@ -5,14 +5,14 @@ author:
 build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: 6.11
-generated_by: 'Dist::Zilla version 1.100680'
+generated_by: 'Dist::Zilla version 1.100710'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Dist-Zilla-Plugin-PodWeaver
 requires:
-  Dist::Zilla::Role::FileMunger: 0
+  Dist::Zilla::Role::FileMunger: 1.100710
   File::Find::Rule: 0
   List::MoreUtils: 0
   Moose: 0
@@ -23,10 +23,10 @@ requires:
   Pod::Elemental::Selectors: 0
   Pod::Elemental::Transformer::Nester: 0
   Pod::Elemental::Transformer::Pod5: 0
-  Pod::Weaver: 3.100650
+  Pod::Weaver: 3.100710
   Pod::Weaver::Config::Assembler: 0
   Test::More: 0
   namespace::autoclean: 0
 resources:
   repository: git://git.codesimply.com/Dist-Zilla-Plugin-PodWeaver.git
-version: 3.100680
+version: 3.100710
