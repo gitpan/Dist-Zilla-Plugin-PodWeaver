@@ -1,39 +1,218 @@
 {
-   "resources" : {
-      "repository" : "git://git.codesimply.com/Dist-Zilla-Plugin-PodWeaver.git"
-   },
-   "meta-spec" : {
-      "version" : 1.4,
-      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
-   },
-   "generated_by" : "Dist::Zilla version 1.100710",
-   "version" : "3.100710",
-   "name" : "Dist-Zilla-Plugin-PodWeaver",
+   "abstract" : "weave your Pod together from configuration and Dist::Zilla",
    "author" : [
       "Ricardo SIGNES <rjbs@cpan.org>"
    ],
-   "license" : "perl",
-   "build_requires" : {},
-   "requires" : {
-      "PPI" : "0",
-      "File::Find::Rule" : "0",
-      "Pod::Elemental" : "0",
-      "namespace::autoclean" : "0",
-      "Pod::Elemental::PerlMunger" : "0",
-      "Moose::Autobox" : "0",
-      "Pod::Weaver::Config::Assembler" : "0",
-      "Test::More" : "0",
-      "Dist::Zilla::Role::FileMunger" : "1.100710",
-      "Pod::Elemental::Transformer::Pod5" : "0",
-      "Pod::Weaver" : "3.100710",
-      "Pod::Elemental::Transformer::Nester" : "0",
-      "Pod::Elemental::Selectors" : "0",
-      "List::MoreUtils" : "0",
-      "Moose" : "0"
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 3.101520",
+   "license" : "perl_5",
+   "meta-spec" : {
+      "url" : "http://github.com/dagolden/cpan-meta/",
+      "version" : 2
    },
-   "abstract" : "weave your Pod together from configuration and Dist::Zilla",
-   "configure_requires" : {
-      "ExtUtils::MakeMaker" : "6.11"
+   "name" : "Dist-Zilla-Plugin-PodWeaver",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.31"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Dist::Zilla::Role::FileMunger" : "0",
+            "List::MoreUtils" : "0",
+            "Moose" : "0",
+            "Moose::Autobox" : "0",
+            "PPI" : "0",
+            "Pod::Elemental" : "0",
+            "Pod::Elemental::PerlMunger" : "0",
+            "Pod::Elemental::Selectors" : "0",
+            "Pod::Elemental::Transformer::Nester" : "0",
+            "Pod::Elemental::Transformer::Pod5" : "0",
+            "Pod::Weaver" : "3.100710",
+            "Pod::Weaver::Config::Assembler" : "0",
+            "namespace::autoclean" : "0"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "File::Find::Rule" : "0",
+            "Test::More" : "0"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "repository" : {
+         "url" : "git://git.codesimply.com/Dist-Zilla-Plugin-PodWeaver.git"
+      }
+   },
+   "version" : "3.101530",
+   "x_Dist_Zilla" : {
+      "plugins" : [
+         {
+            "class" : "Dist::Zilla::Plugin::GatherDir",
+            "name" : "@RJBS/@Basic/GatherDir",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::PruneCruft",
+            "name" : "@RJBS/@Basic/PruneCruft",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::ManifestSkip",
+            "name" : "@RJBS/@Basic/ManifestSkip",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MetaYAML",
+            "name" : "@RJBS/@Basic/MetaYAML",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::License",
+            "name" : "@RJBS/@Basic/License",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Readme",
+            "name" : "@RJBS/@Basic/Readme",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::ExtraTests",
+            "name" : "@RJBS/@Basic/ExtraTests",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::ExecDir",
+            "name" : "@RJBS/@Basic/ExecDir",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::ShareDir",
+            "name" : "@RJBS/@Basic/ShareDir",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MakeMaker",
+            "name" : "@RJBS/@Basic/MakeMaker",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Manifest",
+            "name" : "@RJBS/@Basic/Manifest",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::TestRelease",
+            "name" : "@RJBS/@Basic/TestRelease",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::ConfirmRelease",
+            "name" : "@RJBS/@Basic/ConfirmRelease",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::UploadToCPAN",
+            "name" : "@RJBS/@Basic/UploadToCPAN",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::AutoPrereq",
+            "name" : "@RJBS/AutoPrereq",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::AutoVersion",
+            "name" : "@RJBS/AutoVersion",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::PkgVersion",
+            "name" : "@RJBS/PkgVersion",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MetaConfig",
+            "name" : "@RJBS/MetaConfig",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MetaJSON",
+            "name" : "@RJBS/MetaJSON",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::NextRelease",
+            "name" : "@RJBS/NextRelease",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::PodSyntaxTests",
+            "name" : "@RJBS/PodSyntaxTests",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Repository",
+            "name" : "@RJBS/Repository",
+            "version" : "0.13"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::PodWeaver",
+            "name" : "@RJBS/PodWeaver",
+            "version" : "3.100710"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Git::Check",
+            "name" : "@RJBS/@Git/Check",
+            "version" : "1.101330"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Git::Commit",
+            "name" : "@RJBS/@Git/Commit",
+            "version" : "1.101330"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Git::Tag",
+            "name" : "@RJBS/@Git/Tag",
+            "version" : "1.101330"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Git::Push",
+            "name" : "@RJBS/@Git/Push",
+            "version" : "1.101330"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":InstallModules",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":TestFiles",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":ExecFiles",
+            "version" : "3.101520"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FinderCode",
+            "name" : ":ShareFiles",
+            "version" : "3.101520"
+         }
+      ],
+      "zilla" : {
+         "class" : "Dist::Zilla",
+         "config" : {
+            "is_trial" : 0
+         },
+         "version" : "3.101520"
+      }
    }
 }
 
