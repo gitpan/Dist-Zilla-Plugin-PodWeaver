@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodWeaver;
 BEGIN {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.101620';
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.101640';
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
@@ -122,7 +122,7 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.101620
+version 3.101640
 
 =head1 DESCRIPTION
 
@@ -152,7 +152,7 @@ Otherwise, it will use the default configuration.
 
 =head1 AUTHOR
 
-  Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

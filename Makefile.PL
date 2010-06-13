@@ -23,6 +23,7 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Dist::Zilla::Plugin::PodWeaver',
   'PREREQ_PM' => {
+    'Dist::Zilla' => '4',
     'List::MoreUtils' => '0',
     'Moose' => '0',
     'Moose::Autobox' => '0',
@@ -36,7 +37,7 @@ my %WriteMakefileArgs = (
     'Pod::Weaver::Config::Assembler' => '0',
     'namespace::autoclean' => '0'
   },
-  'VERSION' => '3.101620',
+  'VERSION' => '3.101640',
   'test' => {
     'TESTS' => 't/*.t'
   }
