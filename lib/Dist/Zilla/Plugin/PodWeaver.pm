@@ -1,10 +1,9 @@
 package Dist::Zilla::Plugin::PodWeaver;
-BEGIN {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.101641';
+{
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.101642';
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
-use Moose::Autobox;
 use List::MoreUtils qw(any);
 use Pod::Weaver 3.100710; # logging with proxies
 with(
@@ -15,13 +14,6 @@ with(
 );
 
 use namespace::autoclean;
-
-use PPI;
-use Pod::Elemental;
-use Pod::Elemental::Transformer::Pod5;
-use Pod::Elemental::Transformer::Nester;
-use Pod::Elemental::Selectors -all;
-use Pod::Weaver::Config::Assembler;
 
 
 sub weaver {
@@ -45,7 +37,10 @@ sub weaver {
 
     return Pod::Weaver->new_from_config_sequence($assembler->sequence, $arg);
   } elsif (@files) {
-    return Pod::Weaver->new_from_config($arg);
+    return Pod::Weaver->new_from_config(
+      { root   => $self->zilla->root },
+      { logger => $self->logger },
+    );
   } else {
     return Pod::Weaver->new_with_default_config($arg);
   }
@@ -58,9 +53,13 @@ has config_plugin => (
 
 sub munge_files {
   my ($self) = @_;
-  
+
+  require PPI;
+  require Pod::Weaver;
+  require Pod::Weaver::Config::Assembler;
+
   $self->munge_file($_) for @{ $self->found_files };
-} 
+}
 
 sub munge_file {
   my ($self, $file) = @_;
@@ -115,6 +114,7 @@ no Moose;
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -123,12 +123,32 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.101641
+version 3.101642
 
 =head1 DESCRIPTION
 
 [PodWeaver] is the bridge between L<Dist::Zilla> and L<Pod::Weaver>.  It rips
 apart your kinda-Pod and reconstructs it as boring old real Pod.
+
+=head1 ATTRIBUTES
+
+=head2 finder
+
+[PodWeaver] is a L<Dist::Zilla::Role::FileFinderUser>.  The L<FileFinder> given
+for its C<finder> attribute is used to decide which files to munge.  By
+default, it will munge:
+
+=over 4
+
+=item *
+
+C<:InstallModules>
+
+=item *
+
+C<:ExecFiles>
+
+=back
 
 =head1 METHODS
 
@@ -157,10 +177,9 @@ Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Ricardo SIGNES.
+This software is copyright (c) 2013 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
