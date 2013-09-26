@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodWeaver;
 {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.101642';
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.102000';
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
@@ -50,6 +50,18 @@ has config_plugin => (
   is  => 'ro',
   isa => 'Str',
 );
+
+around dump_config => sub
+{
+  my ($orig, $self) = @_;
+  my $config = $self->$orig;
+
+  $config->{'' . __PACKAGE__} = {
+     $self->config_plugin ? ( config_plugin => $self->config_plugin ) : (),
+     finder => $self->finder,
+  };
+  return $config;
+};
 
 sub munge_files {
   my ($self) = @_;
@@ -123,7 +135,7 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 3.101642
+version 3.102000
 
 =head1 DESCRIPTION
 
