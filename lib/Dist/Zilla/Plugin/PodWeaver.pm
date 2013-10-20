@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodWeaver;
 {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '3.102000';
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.000'; # TRIAL
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
@@ -129,13 +129,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and Dist::Zilla
 
 =head1 VERSION
 
-version 3.102000
+version 4.000
 
 =head1 DESCRIPTION
 

@@ -20,27 +20,24 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Plugin::PodWeaver",
   "PREREQ_PM" => {
-    "Dist::Zilla" => 4,
+    "Dist::Zilla" => 5,
     "Dist::Zilla::Role::FileFinderUser" => 0,
     "Dist::Zilla::Role::FileMunger" => 0,
     "List::MoreUtils" => 0,
     "Moose" => 0,
     "PPI" => 0,
     "Pod::Elemental::PerlMunger" => 0,
-    "Pod::Weaver" => "3.100710",
+    "Pod::Weaver" => 4,
     "Pod::Weaver::Config::Assembler" => 0,
     "namespace::autoclean" => 0
   },
   "TEST_REQUIRES" => {
     "File::Find::Rule" => 0,
-    "File::Spec" => 0,
-    "IO::Handle" => 0,
-    "IPC::Open3" => 0,
     "Test::More" => "0.96",
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "3.102000",
+  "VERSION" => "4.000",
   "test" => {
     "TESTS" => "t/*.t"
   }
