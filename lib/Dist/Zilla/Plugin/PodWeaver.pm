@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodWeaver;
 {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.003';
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.004';
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
@@ -55,6 +55,7 @@ sub mvp_multivalue_args { qw(config_plugins) }
 has config_plugins => (
   isa => 'ArrayRef[Str]',
   traits  => [ 'Array' ],
+  default => sub {  []  },
   handles => {
     config_plugins     => 'elements',
     has_config_plugins => 'count',
@@ -125,7 +126,7 @@ sub munge_perl_string {
 sub munge_pod {
   my ($self, $file) = @_;
 
-  my $content     = $file->content;
+  my $content     = $file->encoded_content;
   my $new_content = $self->munge_perl_string(
     $file->content,
     {
@@ -161,7 +162,7 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 4.003
+version 4.004
 
 =head1 DESCRIPTION
 

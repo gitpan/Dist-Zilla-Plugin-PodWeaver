@@ -31,7 +31,7 @@ resources:
   bugtracker: https://github.com/rjbs/Dist-Zilla-Plugin-PodWeaver/issues
   homepage: https://github.com/rjbs/Dist-Zilla-Plugin-PodWeaver
   repository: https://github.com/rjbs/Dist-Zilla-Plugin-PodWeaver.git
-version: 4.003
+version: 4.004
 x_Dist_Zilla:
   perl:
     version: 5.018002
@@ -167,7 +167,8 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::PodWeaver
       config:
         Dist::Zilla::Plugin::PodWeaver:
-          config_plugin: '@RJBS'
+          config_plugins:
+            - '@RJBS'
           finder:
             - ':InstallModules'
             - ':ExecFiles'
@@ -245,7 +246,7 @@ x_Dist_Zilla:
               name: '@RJBS/List'
               version: 4.005
       name: '@RJBS/PodWeaver'
-      version: 4.002
+      version: 4.004
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@RJBS/GithubMeta'
