@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodWeaver;
 {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.002';
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.003';
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
@@ -26,14 +26,16 @@ sub weaver {
       root_config => { logger => $self->logger },
   };
 
-  if ($self->config_plugin) {
+  if ($self->has_config_plugins) {
     my $assembler = Pod::Weaver::Config::Assembler->new;
 
     my $root = $assembler->section_class->new({ name => '_' });
     $assembler->sequence->add_section($root);
 
-    $assembler->change_section( $self->config_plugin );
-    $assembler->end_section;
+    for my $header ($self->config_plugins) {
+      $assembler->change_section($header);
+      $assembler->end_section;
+    }
 
     return Pod::Weaver->new_from_config_sequence($assembler->sequence, $arg);
   } elsif (@files) {
@@ -46,9 +48,17 @@ sub weaver {
   }
 }
 
-has config_plugin => (
-  is  => 'ro',
-  isa => 'Str',
+
+sub mvp_aliases { return { config_plugin => 'config_plugins' } }
+sub mvp_multivalue_args { qw(config_plugins) }
+
+has config_plugins => (
+  isa => 'ArrayRef[Str]',
+  traits  => [ 'Array' ],
+  handles => {
+    config_plugins     => 'elements',
+    has_config_plugins => 'count',
+  },
 );
 
 around dump_config => sub
@@ -57,7 +67,9 @@ around dump_config => sub
   my $config = $self->$orig;
 
   my $our = {
-    $self->config_plugin ? ( config_plugin => $self->config_plugin ) : (),
+    $self->has_config_plugins
+      ? ( config_plugins => [ $self->config_plugins ] )
+      : (),
     finder => $self->finder,
   };
 
@@ -141,13 +153,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and Dist::Zilla
 
 =head1 VERSION
 
-version 4.002
+version 4.003
 
 =head1 DESCRIPTION
 
@@ -188,7 +202,8 @@ this method in subclasses.
 =head1 CONFIGURATION
 
 If the C<config_plugin> attribute is given, it will be treated like a
-Pod::Weaver section heading.  For example, C<@Default> could be given.
+Pod::Weaver section heading.  For example, C<@Default> could be given.  I may
+be given multiple times.
 
 Otherwise, if a file matching C<./weaver.*> exists, Pod::Weaver will be told to
 look for configuration in the current directory.
@@ -201,7 +216,7 @@ Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Ricardo SIGNES.
+This software is copyright (c) 2014 by Ricardo SIGNES.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
