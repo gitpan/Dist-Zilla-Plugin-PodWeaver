@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodWeaver;
 {
-  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.004';
+  $Dist::Zilla::Plugin::PodWeaver::VERSION = '4.005';
 }
 # ABSTRACT: weave your Pod together from configuration and Dist::Zilla
 use Moose;
@@ -126,7 +126,6 @@ sub munge_perl_string {
 sub munge_pod {
   my ($self, $file) = @_;
 
-  my $content     = $file->encoded_content;
   my $new_content = $self->munge_perl_string(
     $file->content,
     {
@@ -144,7 +143,7 @@ sub munge_pod {
   return;
 }
 
-with 'Pod::Elemental::PerlMunger';
+with 'Pod::Elemental::PerlMunger' => { -version => 0.100000 };
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
@@ -162,7 +161,7 @@ Dist::Zilla::Plugin::PodWeaver - weave your Pod together from configuration and 
 
 =head1 VERSION
 
-version 4.004
+version 4.005
 
 =head1 DESCRIPTION
 
