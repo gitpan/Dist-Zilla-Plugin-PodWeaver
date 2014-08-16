@@ -51,7 +51,7 @@ sub pmver {
 eval { $v .= pmver('Dist::Zilla','5') };
 eval { $v .= pmver('Dist::Zilla::Role::FileFinderUser','any version') };
 eval { $v .= pmver('Dist::Zilla::Role::FileMunger','any version') };
-eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
+eval { $v .= pmver('ExtUtils::MakeMaker','any version') };
 eval { $v .= pmver('File::Find::Rule','any version') };
 eval { $v .= pmver('List::MoreUtils','any version') };
 eval { $v .= pmver('Moose','any version') };
